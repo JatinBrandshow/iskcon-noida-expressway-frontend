@@ -1,491 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config";
+
 
 const Event = () => {
-    const events = [
-        {
-            title: "Mangala Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 4:30 AM",
-            location: "ISKCON Temple",
-            image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Tulsi Aarti",
-            category: "Aarti",
-            date: "Daily • 7:00 AM",
-            location: "Temple Courtyard",
-            image: "https://images.unsplash.com/photo-1567593810070-7a3d471af022?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Morning Darshan",
-            category: "Temple Darshan",
-            date: "Daily • 7:15 AM",
-            location: "Main Temple Hall",
-            image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-            button: "View",
-        },
-        {
-            title: "Garbh Darshan",
-            category: "Temple Darshan",
-            date: "Daily • 8:00 AM",
-            location: "Sanctum",
-            image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80",
-            button: "Book",
-        },
-        {
-            title: "Srimad Bhagavatam Class",
-            category: "Spiritual Lecture",
-            date: "Daily • 8:30 AM",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1604608672516-3d8f7f7c38e1?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Guru Puja",
-            category: "Temple Ritual",
-            date: "Daily • 9:00 AM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Raj Bhog Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 12:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Afternoon Kirtan",
-            category: "Kirtan",
-            date: "Daily • 3:30 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Sandhya Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 6:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1524492449090-1b3f5e5f4c7c?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Bhagavad Gita Discourse",
-            category: "Spiritual Lecture",
-            date: "Daily • 7:00 PM",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=800&q=80",
-            button: "Listen",
-        },
-        {
-            title: "Gaura Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 7:30 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Evening Kirtan",
-            category: "Kirtan",
-            date: "Daily • 8:00 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=800&q=80",
-            button: "Chant",
-        },
-        {
-            title: "Shayan Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 8:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Sunday Love Feast",
-            category: "Prasad Distribution",
-            date: "Every Sunday • 1 PM",
-            location: "Prasadam Hall",
-            image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Bhakti Yoga Workshop",
-            category: "Spiritual Workshop",
-            date: "July 12",
-            location: "Seminar Hall",
-            image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
-            button: "Register",
-        },
-        {
-            title: "Hare Krishna Maha Kirtan",
-            category: "Kirtan Festival",
-            date: "Aug 5",
-            location: "Temple Courtyard",
-            image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Janmashtami Celebration",
-            category: "Festival",
-            date: "Aug 26",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800&q=80",
-            button: "Celebrate",
-        },
-        {
-            title: "Radhashtami Festival",
-            category: "Festival",
-            date: "Sept 12",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Govardhan Puja",
-            category: "Festival",
-            date: "Nov 2",
-            location: "Temple Grounds",
-            image: "https://images.unsplash.com/photo-1500534314209-a26db0f5c4a3?w=800&q=80",
-            button: "Celebrate",
-        },
-        {
-            title: "Gita Jayanti",
-            category: "Spiritual Festival",
-            date: "Dec 10",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800&q=80",
-            button: "Participate",
-        },
-        {
-            title: "Temple Parikrama",
-            category: "Devotional Activity",
-            date: "Daily • 6:00 AM",
-            location: "Temple Path",
-            image: "https://images.unsplash.com/photo-1533158326339-7f3cf2404354?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Bhajan Sandhya",
-            category: "Devotional Singing",
-            date: "Every Friday • 7 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
-            button: "Sing",
-        },
-        {
-            title: "Youth Spiritual Meetup",
-            category: "Youth Program",
-            date: "Every Saturday",
-            location: "Community Hall",
-            image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Gau Seva Program",
-            category: "Seva",
-            date: "Monthly",
-            location: "Temple Gaushala",
-            image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&q=80",
-            button: "Serve",
-        },
-        {
-            title: "Annadan Seva",
-            category: "Charity",
-            date: "Weekly",
-            location: "Temple Kitchen",
-            image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
-            button: "Donate",
-        },
-        {
-            title: "Temple Cleaning Seva",
-            category: "Seva",
-            date: "Sunday Morning",
-            location: "Temple Premises",
-            image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-            button: "Volunteer",
-        },
-        {
-            title: "Spiritual Book Distribution",
-            category: "Seva",
-            date: "Monthly",
-            location: "Temple Entrance",
-            image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80",
-            button: "Participate",
-        },
-        {
-            title: "Bhakti Vriksha Meeting",
-            category: "Community Program",
-            date: "Weekly",
-            location: "Community Hall",
-            image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Devotee Association",
-            category: "Community Gathering",
-            date: "Every Saturday • 6 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1500534314209-a26db0f5c4a3?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Morning Japa Meditation",
-            category: "Meditation",
-            date: "Daily • 5:30 AM",
-            location: "Temple Garden",
-            image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
-            button: "Chant",
-        },
-        {
-            title: "Mangala Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 4:30 AM",
-            location: "ISKCON Temple",
-            image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Tulsi Aarti",
-            category: "Aarti",
-            date: "Daily • 7:00 AM",
-            location: "Temple Courtyard",
-            image: "https://images.unsplash.com/photo-1567593810070-7a3d471af022?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Morning Darshan",
-            category: "Temple Darshan",
-            date: "Daily • 7:15 AM",
-            location: "Main Temple Hall",
-            image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-            button: "View",
-        },
-        {
-            title: "Garbh Darshan",
-            category: "Temple Darshan",
-            date: "Daily • 8:00 AM",
-            location: "Sanctum",
-            image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80",
-            button: "Book",
-        },
-        {
-            title: "Srimad Bhagavatam Class",
-            category: "Spiritual Lecture",
-            date: "Daily • 8:30 AM",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1604608672516-3d8f7f7c38e1?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Guru Puja",
-            category: "Temple Ritual",
-            date: "Daily • 9:00 AM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Raj Bhog Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 12:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Afternoon Kirtan",
-            category: "Kirtan",
-            date: "Daily • 3:30 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Sandhya Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 6:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1524492449090-1b3f5e5f4c7c?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Bhagavad Gita Discourse",
-            category: "Spiritual Lecture",
-            date: "Daily • 7:00 PM",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=800&q=80",
-            button: "Listen",
-        },
-        {
-            title: "Gaura Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 7:30 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Evening Kirtan",
-            category: "Kirtan",
-            date: "Daily • 8:00 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=800&q=80",
-            button: "Chant",
-        },
-        {
-            title: "Shayan Aarti",
-            category: "Temple Aarti",
-            date: "Daily • 8:30 PM",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Sunday Love Feast",
-            category: "Prasad Distribution",
-            date: "Every Sunday • 1 PM",
-            location: "Prasadam Hall",
-            image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Bhakti Yoga Workshop",
-            category: "Spiritual Workshop",
-            date: "July 12",
-            location: "Seminar Hall",
-            image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
-            button: "Register",
-        },
-        {
-            title: "Hare Krishna Maha Kirtan",
-            category: "Kirtan Festival",
-            date: "Aug 5",
-            location: "Temple Courtyard",
-            image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Janmashtami Celebration",
-            category: "Festival",
-            date: "Aug 26",
-            location: "Main Temple",
-            image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800&q=80",
-            button: "Celebrate",
-        },
-        {
-            title: "Radhashtami Festival",
-            category: "Festival",
-            date: "Sept 12",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Govardhan Puja",
-            category: "Festival",
-            date: "Nov 2",
-            location: "Temple Grounds",
-            image: "https://images.unsplash.com/photo-1500534314209-a26db0f5c4a3?w=800&q=80",
-            button: "Celebrate",
-        },
-        {
-            title: "Gita Jayanti",
-            category: "Spiritual Festival",
-            date: "Dec 10",
-            location: "Lecture Hall",
-            image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800&q=80",
-            button: "Participate",
-        },
-        {
-            title: "Temple Parikrama",
-            category: "Devotional Activity",
-            date: "Daily • 6:00 AM",
-            location: "Temple Path",
-            image: "https://images.unsplash.com/photo-1533158326339-7f3cf2404354?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Bhajan Sandhya",
-            category: "Devotional Singing",
-            date: "Every Friday • 7 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
-            button: "Sing",
-        },
-        {
-            title: "Youth Spiritual Meetup",
-            category: "Youth Program",
-            date: "Every Saturday",
-            location: "Community Hall",
-            image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Gau Seva Program",
-            category: "Seva",
-            date: "Monthly",
-            location: "Temple Gaushala",
-            image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&q=80",
-            button: "Serve",
-        },
-        {
-            title: "Annadan Seva",
-            category: "Charity",
-            date: "Weekly",
-            location: "Temple Kitchen",
-            image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
-            button: "Donate",
-        },
-        {
-            title: "Temple Cleaning Seva",
-            category: "Seva",
-            date: "Sunday Morning",
-            location: "Temple Premises",
-            image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-            button: "Volunteer",
-        },
-        {
-            title: "Spiritual Book Distribution",
-            category: "Seva",
-            date: "Monthly",
-            location: "Temple Entrance",
-            image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80",
-            button: "Participate",
-        },
-        {
-            title: "Bhakti Vriksha Meeting",
-            category: "Community Program",
-            date: "Weekly",
-            location: "Community Hall",
-            image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
-            button: "Join",
-        },
-        {
-            title: "Devotee Association",
-            category: "Community Gathering",
-            date: "Every Saturday • 6 PM",
-            location: "Temple Hall",
-            image: "https://images.unsplash.com/photo-1500534314209-a26db0f5c4a3?w=800&q=80",
-            button: "Attend",
-        },
-        {
-            title: "Morning Japa Meditation",
-            category: "Meditation",
-            date: "Daily • 5:30 AM",
-            location: "Temple Garden",
-            image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
-            button: "Chant",
-        },
-    ];
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const response = await fetch(`${API_NODE_URL}slug/getbytype?type=Event`);
+                const result = await response.json();
+                console.log("Event Page API Response:", result.data);
+                if (result.status && result.data) {
+                    const transformedEvents = result.data.map(event => {
+                        const eventDate = new Date(event.date);
+                        return {
+                            title: event.name,
+                            category: event.tag1 || "Festival",
+                            date: eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                            location: event.param2 || "Main Temple",
+                            image: event.featured_img ? `${IMAGE_PATH}${event.featured_img}` : "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800&q=80",
+                            button: event.param3 || "Details",
+                            desc: event.shortdesc || "",
+                            description: event.description || ""
+                        };
+                    });
+                    setEvents(transformedEvents);
+                }
+            } catch (error) {
+                console.error("Error fetching events:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEvents();
+    }, []);
 
     const categories = ["All", ...new Set(events.map((event) => event.category))];
     const eventsPerPage = 12;
@@ -511,6 +65,17 @@ const Event = () => {
     const startIndex = (currentPage - 1) * eventsPerPage;
 
     const currentEvents = filteredEvents.slice(startIndex, startIndex + eventsPerPage);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center bg-gray-50">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary mb-4"></div>
+                <p className="text-xl font-semibold text-primary font-novaBold italic">
+                    Fetching divine moments...
+                </p>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -713,7 +278,18 @@ const Event = () => {
 
                                     <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
 
-                                    <p className="text-sm text-gray-400 mb-6">{event.location}</p>
+                                    <div 
+                                        className="text-sm text-gray-300 line-clamp-2 mb-3"
+                                        dangerouslySetInnerHTML={{ __html: event.description || event.desc }}
+                                    />
+
+                                    <p className="text-xs text-secondary font-medium mb-4 flex items-center gap-1">
+                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        {event.location}
+                                    </p>
 
                                     <button className="w-full border border-secondary text-secondary py-2 rounded-lg hover:bg-secondary hover:text-white transition">
                                         {event.button}
