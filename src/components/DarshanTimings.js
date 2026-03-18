@@ -31,7 +31,7 @@ const DarshanTimings = () => {
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-600 rounded-full blur-[120px] animate-pulse" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-yellow-700 rounded-full blur-[120px] animate-pulse" />
             </div>
- 
+
             <div className="max-w-4xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <motion.h2
@@ -45,11 +45,11 @@ const DarshanTimings = () => {
                         Daily <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-200">Rhythms</span>
                     </h1>
                 </div>
- 
+
                 <div className="relative">
                     {/* Central Vertical Line (The Path) */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-linear-to-b from-orange-500/0 via-orange-500/50 to-orange-500/0" />
- 
+
                     <div className="space-y-12">
                         {timings.map((item, i) => (
                             <motion.div
@@ -61,7 +61,7 @@ const DarshanTimings = () => {
                             >
                                 {/* Time Marker Dot */}
                                 <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-20 border-2 border-orange-500 ${activeIdx === i ? 'bg-white shadow-[0_0_15px_rgba(251,146,60,0.8)]' : 'bg-[#0a0a0a]'}`} />
- 
+
                                 {/* Content Card */}
                                 <div className={`w-[42%] ${i % 2 === 0 ? "text-left" : "text-right"}`}>
                                     <div className={`group p-6 rounded-2xl transition-all duration-500 border ${activeIdx === i ? 'bg-orange-600/10 border-orange-500' : 'bg-white/5 border-white/10'}`}>
@@ -81,7 +81,7 @@ const DarshanTimings = () => {
                         ))}
                     </div>
                 </div>
- 
+
                 <div className="mt-20 text-center">
                     <div className="inline-block px-8 py-4 border border-orange-500/30 rounded-full bg-orange-500/5 text-orange-200 text-sm backdrop-blur-md">
                         🏛️ Temple Doors Open: 4:30 AM — 9:00 PM • 365 Days

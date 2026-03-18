@@ -70,7 +70,17 @@ const TempleDailyActivities = () => {
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-12">
+                        {/* 🔶 Badge */}
+                        <div className="flex justify-center mb-3">
+                            <span className="bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full shadow-md tracking-wide">
+                                प्रतिदिन
+                            </span>
+                        </div>
+
+                        {/* Heading */}
                         <h2 className="text-3xl md:text-4xl font-serif text-orange-900">दैनिक मंदिर कार्यक्रम</h2>
+
+                        {/* Subtext */}
                         <p className="text-orange-700 text-sm mt-2">सोमवार से रविवार — सभी 365 दिन</p>
                     </div>
 
