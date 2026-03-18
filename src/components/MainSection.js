@@ -6,21 +6,26 @@ import { ArrowRight, Calendar, PlayCircle } from "lucide-react";
 
 const MainSection = () => {
     return (
-        <section className="relative min-h-[94vh] flex items-center bg-white overflow-hidden px-5 py-20">
+        <section className="relative min-h-[80vh] flex items-center bg-white overflow-hidden px-5 py-20">
             {/* Soft Background */}
             <div
                 className="absolute inset-0 opacity-[0.05] bg-center bg-cover"
                 style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
             />
 
-            <div className="max-w-[1500px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div className="max-w-[1500px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-center relative z-10">
                 {/* LEFT SIDE → CONTENT */}
                 <div className="space-y-6 text-center lg:text-left">
                     {/* Divider */}
-                    <div className="flex items-center justify-center lg:justify-start gap-3">
-                        <div className="h-px w-16 bg-linear-to-r from-transparent to-primary" />
-                        <span className="text-primary text-xl">🪷</span>
-                        <div className="h-px w-16 bg-linear-to-l from-transparent to-primary" />
+                    <div className="w-full flex items-center justify-center gap-3">
+                        {/* Left Line */}
+                        <div className="h-1 bg-primary w-8" />
+
+                        {/* Icon */}
+                        <span className="text-primary text-xl px-2">🪷</span>
+
+                        {/* Right Line */}
+                        <div className="h-1 bg-primary w-8" />
                     </div>
 
                     {/* Title */}
@@ -89,8 +94,11 @@ const MainSection = () => {
                         </svg>
                     </div>
 
+                    {/* Decorative Frames */}
+                    <div className="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-orange-500 rounded-tl-3xl"></div>
+                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-orange-500 rounded-br-3xl"></div>
                     {/* Image */}
-                    <div className="relative z-10 h-[400px] lg:h-[550px] w-full max-w-md rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative h-100 lg:h-137 w-full rounded-2xl overflow-hidden shadow-2xl transform group-hover:scale-[1.01] transition-transform duration-500">
                         <Image
                             src="/img/main-section.webp"
                             alt="ISKCON Temple Noida Expressway"
