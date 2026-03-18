@@ -6,7 +6,7 @@ import { Camera, Sparkles, Sprout, Music, Utensils, Construction } from "lucide-
 const galleryItems = [
     {
         title: "श्री कृष्ण — दिव्य दर्शन",
-        image: "/img/main-section.webp",
+        image: "/img/main-section-8.webp",
         icon: <Sparkles className="w-8 h-8" />,
         span: "md:col-span-2 md:row-span-2",
         color: "from-[#ea580c]/25",
@@ -35,7 +35,7 @@ const galleryItems = [
     {
         title: "कीर्तन महोत्सव",
         image: "/img/main-section-4.webp",
-        icon: <Music className="w-6 h-6" />,
+        icon: <Music className="w-6 h-6" />,  
         span: "md:col-span-1 md:row-span-1",
         color: "from-[#facc15]/15",
     },
