@@ -35,7 +35,7 @@ const galleryItems = [
     {
         title: "कीर्तन महोत्सव",
         image: "/img/main-section-4.webp",
-        icon: <Music className="w-6 h-6" />,  
+        icon: <Music className="w-6 h-6" />,
         span: "md:col-span-1 md:row-span-1",
         color: "from-[#facc15]/15",
     },
@@ -68,18 +68,26 @@ const GalleryItem = ({ item }) => {
                         alt={item.title}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${item.color} to-transparent opacity-60`} />
+
+                    {/* 1. Dark base (important for text readability) */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+
+                    {/* 2. Color identity (your theme) */}
+                    <div className={`absolute inset-0 bg-linear-to-br ${item.color} to-transparent opacity-50`} />
+
+                    {/* 3. Soft highlight (top lighting effect 🔥) */}
+                    <div className="absolute inset-0 bg-linear-to-t from-transparent via-white/5 to-white/10 opacity-40" />
                 </>
             ) : (
                 <div
-                    className={`flex h-full w-full flex-col items-center justify-center space-y-4 bg-gradient-to-br ${item.color} to-[#111827]`}
+                    className={`flex h-full w-full flex-col items-center justify-center space-y-4 bg-linear-to-br ${item.color} to-[#111827]`}
                 >
                     <div className="text-[#ea580c]">{item.icon}</div>
                 </div>
             )}
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/70 via-black/10 to-transparent">
+            <div className="absolute inset-0 flex flex-col justify-end p-6 bg-linear-to-t from-black/70 via-black/10 to-transparent">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#facc15] mb-1 translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
                     ISKCON NOIDA
                 </p>
@@ -88,7 +96,7 @@ const GalleryItem = ({ item }) => {
                     {item.title}
                 </h3>
 
-                <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-[#ea580c] to-[#facc15] transition-all duration-500 group-hover:w-full" />
+                <div className="mt-4 h-0.5 w-0 bg-linear-to-r from-[#ea580c] to-[#facc15] transition-all duration-500 group-hover:w-full" />
             </div>
 
             <div className="absolute inset-0 border-2 border-[#ea580c]/0 transition-colors duration-500 group-hover:border-[#ea580c]/30 rounded-4xl" />
@@ -99,7 +107,6 @@ const GalleryItem = ({ item }) => {
 const TempleGallery = () => {
     return (
         <section className="relative h-[120vh] py-10 px-6 overflow-hidden flex flex-col bg-[#0f172a]">
-
             {/* Subtle Primary Glow */}
             <div className="absolute top-0 right-0 h-96 w-96 bg-[#ea580c]/10 blur-[140px] rounded-full" />
 
@@ -107,7 +114,6 @@ const TempleGallery = () => {
             <div className="absolute bottom-0 left-0 h-96 w-96 bg-[#facc15]/10 blur-[140px] rounded-full" />
 
             <div className="relative mx-auto max-w-7xl flex flex-col h-full">
-                
                 {/* Header */}
                 <div className="mb-8 flex flex-col items-center text-center shrink-0">
                     <div className="flex items-center gap-2 mb-4">
@@ -120,7 +126,7 @@ const TempleGallery = () => {
 
                     <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
                         दिव्य{" "}
-                        <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#ea580c] to-[#facc15]">
+                        <span className="italic text-transparent bg-clip-text bg-linear-to-r from-[#ea580c] to-[#facc15]">
                             दर्शन
                         </span>{" "}
                         गैलरी
@@ -132,7 +138,7 @@ const TempleGallery = () => {
                 </div>
 
                 {/* Grid */}
-                <div className="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4 md:grid-rows-3">
+                <div className="grid flex-1 min-h-0 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4 md:grid-rows-3">
                     {galleryItems.map((item, index) => (
                         <GalleryItem key={index} item={item} />
                     ))}
