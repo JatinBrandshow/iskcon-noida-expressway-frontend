@@ -71,19 +71,31 @@ const TempleEvents = () => {
               key={index}
               className="bg-white rounded-2xl overflow-hidden shadow-lg transition hover:-translate-y-2"
             >
-              {/* Date Banner */}
-              <div className="bg-secondary p-4 flex items-center gap-3">
-                <div className="bg-white rounded-md px-3 py-1 text-center min-w-[55px]">
-                  <div className="text-lg font-extrabold text-secondary leading-none">
-                    {event.day}
+              {/* Date & Image Banner */}
+              <div className="relative h-48 bg-secondary overflow-hidden group">
+                {event.image && (
+                  <Image 
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover opacity-60 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent"></div>
+                
+                <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                  <div className="bg-white rounded-md px-3 py-1 text-center min-w-[55px] shadow-lg">
+                    <div className="text-lg font-extrabold text-secondary leading-none">
+                      {event.day}
+                    </div>
+                    <div className="text-[10px] font-semibold text-quaternary uppercase">
+                      {event.month}
+                    </div>
                   </div>
-                  <div className="text-[10px] font-semibold text-quaternary uppercase">
-                    {event.month}
-                  </div>
+                  <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-[11px] font-bold border border-primary/20 backdrop-blur-sm shadow-sm leading-none">
+                    {event.tag}
+                  </span>
                 </div>
-                <span className="bg-white/20 text-white px-3 py-1 rounded-full text-[11px] font-semibold">
-                  {event.tag}
-                </span>
               </div>
 
               {/* Body */}
