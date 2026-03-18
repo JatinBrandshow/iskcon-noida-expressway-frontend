@@ -111,7 +111,7 @@ body {
 }
 
     .animate-mandala {
-    animation: rotate-mandala 60s linear infinite;
+    animation: rotate-mandala 10s linear infinite;
 }
 
     .bg-temple-gradient {
