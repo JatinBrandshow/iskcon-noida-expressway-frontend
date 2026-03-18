@@ -1,3 +1,5 @@
+import { Clock } from "lucide-react";
+
 const programs = [
     {
         time: "4:30 AM",
@@ -64,38 +66,48 @@ const programs = [
 const TempleDailyActivities = () => {
     return (
         <>
-            <section id="program" className="py-[70px] px-[4%] bg-[linear-gradient(180deg,#FFF8E7,#FFE4B5)]">
-                <div className="max-w-[1300px] mx-auto">
+            <section className="py-20 px-5 bg-[#fff7ed]">
+                <div className="max-w-6xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-[45px]">
-                        <span className="inline-block bg-[linear-gradient(135deg,#ff6b00,#ffd700)] text-white px-4 py-[4px] rounded-[20px] text-[0.72rem] font-bold uppercase tracking-[2px] mb-[10px]">
-                            प्रतिदिन
-                        </span>
-
-                        <h2 className="text-[clamp(1.3rem,2.8vw,2.2rem)] text-primary font-serif mb-[10px]">
-                            दैनिक मंदिर कार्यक्रम
-                        </h2>
-
-                        <div className="w-[70px] h-[3px] bg-[linear-gradient(90deg,#ff6b00,#ffd700)] mx-auto rounded-[2px]" />
-
-                        <p className="text-[#7A5C4A] mt-[12px] text-[0.92rem]">सोमवार से रविवार — सभी 365 दिन</p>
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-serif text-orange-900">दैनिक मंदिर कार्यक्रम</h2>
+                        <p className="text-orange-700 text-sm mt-2">सोमवार से रविवार — सभी 365 दिन</p>
                     </div>
 
                     {/* Grid */}
-                    <div className="grid gap-[16px] grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {programs.map((item, i) => (
                             <div
                                 key={i}
-                                className="bg-secondary rounded-[14px] px-[20px] py-[18px] flex items-center gap-[16px] shadow-[0_4px_20px_rgba(92,10,10,0.08)] border-l-[4px] border-[#ea580c] transition-all duration-300 hover:translate-x-[5px] hover:shadow-[0_8px_30px_rgba(92,10,10,0.15)] hover:border-[#facc15]"
+                                className="group relative bg-white rounded-2xl p-5 shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
                             >
-                                <div className="bg-primary text-white px-[14px] py-[8px] rounded-[10px] text-[0.85rem] font-bold text-center min-w-[90px]">
-                                    {item.time}
+                                {/* 🔶 Semi Circle Shape (TOP RIGHT) */}
+                                <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary opacity-20 rounded-full blur-2xl"></div>
+
+                                {/* Optional Sharp Half Circle */}
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-secondary/50 opacity-20 rounded-bl-[100px]"></div>
+
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 bg-linear-to-br from-orange-400 to-yellow-300 opacity-0 group-hover:opacity-10 transition duration-300"></div>
+
+                                {/* Time Badge */}
+                                <div className="flex items-center gap-2 mb-3 relative z-10">
+                                    <Clock size={16} className="text-orange-500" />
+                                    <span className="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-md">
+                                        {item.time}
+                                    </span>
                                 </div>
 
-                                <div>
-                                    <h4 className="text-primary font-serif text-[0.85rem] mb-[3px]">{item.title}</h4>
-                                    <p className="text-white text-[0.78rem]">{item.desc}</p>
-                                </div>
+                                {/* Title */}
+                                <h4 className="text-orange-900 font-semibold text-base mb-1 relative z-10">
+                                    {item.title}
+                                </h4>
+
+                                {/* Description */}
+                                <p className="text-orange-700 text-sm relative z-10">{item.desc}</p>
+
+                                {/* Bottom Accent Line */}
+                                <div className="absolute bottom-0 left-0 w-0 h-0.75 bg-linear-to-r from-orange-500 to-yellow-400 group-hover:w-full transition-all duration-300"></div>
                             </div>
                         ))}
                     </div>
