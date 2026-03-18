@@ -13,7 +13,7 @@ const MainSection = () => {
                 style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
             />
 
-            <div className="max-w-[1500px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-center relative z-10">
+            <div className="max-w-375 mx-auto w-full grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-center relative z-10">
                 {/* LEFT SIDE → CONTENT */}
                 <div className="space-y-6 text-center lg:text-left">
                     {/* Divider */}
@@ -108,7 +108,7 @@ const MainSection = () => {
                         />
 
                         {/* Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
                         {/* Floating Card */}
                         <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl flex items-center justify-between shadow-lg">

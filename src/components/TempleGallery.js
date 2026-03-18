@@ -63,7 +63,7 @@ const GalleryItem = ({ item }) => {
       )}
 
       {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+      <div className="absolute inset-0 bg-linear-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
         <span className="text-white text-xs font-semibold">
           {item.title}
         </span>
@@ -74,10 +74,10 @@ const GalleryItem = ({ item }) => {
 
 const TempleGallery = () => {
   return (
-    <section className="py-[70px] px-[4%] bg-senary">
+    <section className="py-17.5 px-[4%] bg-senary">
 
       {/* Header */}
-      <div className="max-w-[1300px] mx-auto mb-10 text-center">
+      <div className="max-w-325 mx-auto mb-10 text-center">
         <span className="inline-block bg-secondary/20 text-secondary border border-secondary px-4 py-1 rounded-full text-xs font-semibold mb-3">
           फोटो गैलरी
         </span>
@@ -90,7 +90,7 @@ const TempleGallery = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-[1300px] mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-325 mx-auto">
         {galleryItems.map((item, index) => (
           <GalleryItem key={index} item={item} />
         ))}
