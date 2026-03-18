@@ -1,5 +1,40 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "proximanova-regular";
+  src: url("/fonts/proximanova-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-semibold";
+  src: url("/fonts/proximanova-semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-bold";
+  src: url("/fonts/proximanova-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-light";
+  src: url("/fonts/proximanova-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-thin";
+  src: url("/fonts/proximanova-thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "slick";
+  src: url("/fonts/slick.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "montserrat";
+  src: url("/fonts/montserrat.ttf") format("truetype");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,6 +45,15 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --font-novaReg: "proximanova-regular", sans-serif;
+  --font-novaSemi: "proximanova-semibold", sans-serif;
+  --font-novaBold: "proximanova-bold", sans-serif;
+  --font-novaLight: "proximanova-light", sans-serif;
+  --font-novaThin: "proximanova-thin", sans-serif;
+  
+  --color-brand-blue: #002147;
+  --color-brand-yellow: #FFC526;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,5 +141,11 @@ body {
 
     .text-tertiary {
         color: #facc15;
+    }
+
+    /* Admin specific utilities from akg */
+    .bg-grid-pattern {
+        background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+        background-size: 20px 20px;
     }
 }
