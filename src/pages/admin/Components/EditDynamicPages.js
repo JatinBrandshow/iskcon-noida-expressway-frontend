@@ -724,7 +724,7 @@ function EditDynamicPages({ type, componentType }) {
 
     const payload = {
       ...formData,
-      stream: streamId,
+      // stream: streamId,
       ComponentType: selectedComponentType || compType || componentType,
     }
 
@@ -809,8 +809,7 @@ function EditDynamicPages({ type, componentType }) {
             </div>
           </div>
 
-          {/* Basic Details Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -896,7 +895,7 @@ function EditDynamicPages({ type, componentType }) {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Page Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">

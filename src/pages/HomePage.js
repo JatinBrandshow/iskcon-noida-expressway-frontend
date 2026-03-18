@@ -12,6 +12,7 @@ import TempleDailyActivities from "@/components/TempleDailyActivities";
 import TempleDailyProgram from "@/components/TempleDailyProgram";
 import TempleDonation from "@/components/TempleDonation";
 import TempleEvents from "@/components/TempleEvents";
+import TempleNews from "@/components/TempleNews";
 import TempleGallery from "@/components/TempleGallery";
 import TempleLocation from "@/components/TempleLocation";
 import TempleProject from "@/components/TempleProject";
@@ -26,6 +27,7 @@ const HomePage = () => {
             <TempleDailyActivities />
             <TempleProject />
             <TempleEvents />
+            <TempleNews />
             <TempleGallery />
             <LiveDarshan />
             <TempleDailyProgram />

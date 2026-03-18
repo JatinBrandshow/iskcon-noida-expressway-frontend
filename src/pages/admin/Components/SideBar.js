@@ -65,7 +65,7 @@ export default function SideBar({ onLogout }) {
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
         <div className={`flex items-center space-x-3 ${isOpen ? "block" : "hidden"}`}>
           <div className="w-12 h-12 rounded-lg flex items-center justify-center">
-            <Image src="/image/akgec-logo.webp" className="rounded-full" height={60} width={60} alt="AKG Logo" />
+            <Image src="/image/akgec-logo.webp" className="rounded-full" height={60} width={60} alt="ISKCON" />
           </div>
           <div>
             <h1 className="text-xl font-novaBold whitespace-nowrap">Admin Panel</h1>

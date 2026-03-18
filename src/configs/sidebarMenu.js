@@ -34,14 +34,14 @@ export const menuItems = [
         ),
         permission: "News",
     },
-    {
-        name: "Article",
-        href: "admin/article-list",
-        icon: (
-            <Waypoints className="w-5 h-5" />
-        ),
-        permission: "Article",
-    },
+    // {
+    //     name: "Article",
+    //     href: "admin/article-list",
+    //     icon: (
+    //         <Waypoints className="w-5 h-5" />
+    //     ),
+    //     permission: "Article",
+    // },
     {
         name: "Event",
         href: "admin/event-list",
@@ -50,14 +50,14 @@ export const menuItems = [
         ),
         permission: "Event",
     },
-    {
-        name: "Circular",
-        href: "admin/circular-list",
-        icon: (
-            <RefreshCcwDot className="w-5 h-5" />
-        ),
-        permission: "Circular",
-    },
+    // {
+    //     name: "Circular",
+    //     href: "admin/circular-list",
+    //     icon: (
+    //         <RefreshCcwDot className="w-5 h-5" />
+    //     ),
+    //     permission: "Circular",
+    // },
     {
         name: "Announcement",
         href: "admin/announcement-list",
@@ -66,86 +66,86 @@ export const menuItems = [
         ),
         permission: "Announcement",
     },
-    {
-        name: "Notice",
-        href: "admin/notice-list",
-        icon: (
-            <NotepadText className="w-5 h-5" />
-        ),
-        permission: "Notice",
-    },
-    {
-        name: "Schools",
-        href: "admin/school-list",
-        icon: (
-            <School className="w-5 h-5" />
-        ),
-        permission: "Schools",
-    },
-    {
-        name: "Departments",
-        href: "admin/department-list",
-        icon: (
-            <LibraryBig className="w-5 h-5" />
-        ),
-        permission: "Departments",
-    },
-    {
-        name: "Programs",
-        href: "admin/program-list",
-        icon: (
-            <Book className="w-5 h-5" />
-        ),
-        permission: "Programs",
-    },
-    {
-        name: "Faculty",
-        href: "admin/faculty-list",
-        icon: (
-            <Users className="w-5 h-5" />
-        ),
-        permission: "Faculty",
-    },
-    {
-        name: "Student Reviews",
-        href: "admin/student-reviews",
-        icon: (
-            <BookmarkCheck className="w-5 h-5" />
-        ),
-        permission: "Student Reviews",
-    },
-    {
-        name: "Testimonial",
-        href: "admin/testimonial-list",
-        icon: (
-            <Users className="w-5 h-5" />
-        ),
-        permission: "Testimonial",
-    },
-    {
-        name: "Download Center",
-        href: "admin/download-center-list",
-        icon: (
-            <Download className="w-5 h-5" />
-        ),
-        permission: "Download Center",
-    },
-    {
-        name: "Highlight Banner",
-        href: "admin/highlight-banner-list",
-        icon: (
-            <Notebook className="w-5 h-5" />
-        ),
-        permission: "Highlight Banner",
-    },
-    {
-        name: "Topper Management",
-        href: "admin/topper-management",
-        icon: (
-            <Users className="w-5 h-5" />
-        ),
-        permission: "Topper Management",
-    },
+    // {
+    //     name: "Notice",
+    //     href: "admin/notice-list",
+    //     icon: (
+    //         <NotepadText className="w-5 h-5" />
+    //     ),
+    //     permission: "Notice",
+    // },
+    // {
+    //     name: "Schools",
+    //     href: "admin/school-list",
+    //     icon: (
+    //         <School className="w-5 h-5" />
+    //     ),
+    //     permission: "Schools",
+    // },
+    // {
+    //     name: "Departments",
+    //     href: "admin/department-list",
+    //     icon: (
+    //         <LibraryBig className="w-5 h-5" />
+    //     ),
+    //     permission: "Departments",
+    // },
+    // {
+    //     name: "Programs",
+    //     href: "admin/program-list",
+    //     icon: (
+    //         <Book className="w-5 h-5" />
+    //     ),
+    //     permission: "Programs",
+    // },
+    // {
+    //     name: "Faculty",
+    //     href: "admin/faculty-list",
+    //     icon: (
+    //         <Users className="w-5 h-5" />
+    //     ),
+    //     permission: "Faculty",
+    // },
+    // {
+    //     name: "Student Reviews",
+    //     href: "admin/student-reviews",
+    //     icon: (
+    //         <BookmarkCheck className="w-5 h-5" />
+    //     ),
+    //     permission: "Student Reviews",
+    // },
+    // {
+    //     name: "Testimonial",
+    //     href: "admin/testimonial-list",
+    //     icon: (
+    //         <Users className="w-5 h-5" />
+    //     ),
+    //     permission: "Testimonial",
+    // },
+    // {
+    //     name: "Download Center",
+    //     href: "admin/download-center-list",
+    //     icon: (
+    //         <Download className="w-5 h-5" />
+    //     ),
+    //     permission: "Download Center",
+    // },
+    // {
+    //     name: "Highlight Banner",
+    //     href: "admin/highlight-banner-list",
+    //     icon: (
+    //         <Notebook className="w-5 h-5" />
+    //     ),
+    //     permission: "Highlight Banner",
+    // },
+    // {
+    //     name: "Topper Management",
+    //     href: "admin/topper-management",
+    //     icon: (
+    //         <Users className="w-5 h-5" />
+    //     ),
+    //     permission: "Topper Management",
+    // },
     {
         name: "Admin Management",
         href: "admin/admin-management",

@@ -181,9 +181,8 @@ const FileUploadField = ({
         <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
         <label
           htmlFor={id}
-          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-            isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
         >
           {isUploading ? (
             <>
@@ -461,15 +460,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         progressBar.style.width = "100%"
       })
 
-      if (!streamId) {
-        toast.warning("Please select a stream")
-        setErrors((prev) => ({ ...prev, selectedPage: "Please select a stream" }))
-        return
-      }
+      // if (!streamId) {
+      //   toast.warning("Please select a stream")
+      //   setErrors((prev) => ({ ...prev, selectedPage: "Please select a stream" }))
+      //   return
+      // }
 
       const payload = {
         ...formData,
-        stream: streamId, // Use streamId instead of selectedPage
+        // stream: streamId, // Use streamId instead of selectedPage
         ComponentType: componentType || allData?.ComponentType,
       }
 
@@ -555,8 +554,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
           </div>
 
-          {/* Basic Details Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -614,13 +612,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                             <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
                               {page?.type && (
                                 <span
-                                  className={`px-2 py-0.5 rounded-full text-xs ${
-                                    page.type === "School"
+                                  className={`px-2 py-0.5 rounded-full text-xs ${page.type === "School"
                                       ? "bg-blue-100 text-blue-700"
                                       : page.type === "Department"
                                         ? "bg-green-100 text-green-700"
                                         : "bg-gray-100 text-gray-700"
-                                  }`}
+                                    }`}
                                 >
                                   {page.type}
                                 </span>
@@ -647,7 +644,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Page Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -937,11 +934,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                   <label
                     htmlFor="galleryimg"
-                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-                      galleryUploadingIndexes.length > 0
+                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
                         ? "bg-gray-400 cursor-not-allowed"
                         : "bg-blue-600 hover:bg-blue-700"
-                    }`}
+                      }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
                       <>

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <CreateDynamicPages type="Event" componentType="event-details" parentId={122156} />
+        <CreateDynamicPages type="Event" componentType="event-details"/>
       </Layout>
     </>
   );

@@ -8,7 +8,7 @@ import AnnouncementSlider from "./AnnouncementSlider";
 const links = [
     { name: "दैनिक कार्यक्रम", href: "#program" },
     { name: "मंदिर निर्माण", href: "#project" },
-    { name: "उत्सव", href: "#events" },
+    { name: "उत्सव", href: "/event" },
     { name: "गैलरी", href: "#gallery" },
     { name: "लाइव दर्शन", href: "#live" },
     { name: "सेवा करें", href: "#volunteer" },

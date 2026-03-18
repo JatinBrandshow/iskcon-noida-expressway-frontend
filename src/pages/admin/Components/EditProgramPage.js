@@ -634,7 +634,7 @@ function EditProgramPage({ type, componentType }) {
         })
         const data = await response.json();
         console.log(data);
-        
+
         if (data.status) {
           const parent_id = data?.data?.parent_id
           const stream_id = data?.data?.stream
@@ -863,7 +863,7 @@ function EditProgramPage({ type, componentType }) {
     }
 
     console.log(payload);
-    
+
 
     setSubmitting(true)
     try {
@@ -1509,8 +1509,8 @@ function EditProgramPage({ type, componentType }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
