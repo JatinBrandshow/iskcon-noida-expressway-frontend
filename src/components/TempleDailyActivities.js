@@ -86,15 +86,15 @@ const TempleDailyActivities = () => {
                         {programs.map((item, i) => (
                             <div
                                 key={i}
-                                className="bg-white rounded-[14px] px-[20px] py-[18px] flex items-center gap-[16px] shadow-[0_4px_20px_rgba(92,10,10,0.08)] border-l-[4px] border-secondary transition-all duration-300 hover:translate-x-[5px] hover:shadow-[0_8px_30px_rgba(92,10,10,0.15)]"
+                                className="bg-secondary rounded-[14px] px-[20px] py-[18px] flex items-center gap-[16px] shadow-[0_4px_20px_rgba(92,10,10,0.08)] border-l-[4px] border-[#ea580c] transition-all duration-300 hover:translate-x-[5px] hover:shadow-[0_8px_30px_rgba(92,10,10,0.15)] hover:border-[#facc15]"
                             >
-                                <div className="bg-[linear-gradient(135deg,#5c0a0a,#8B1A1A)] text-tertiary px-[14px] py-[8px] rounded-[10px] text-[0.85rem] font-bold text-center min-w-[90px]">
+                                <div className="bg-primary text-white px-[14px] py-[8px] rounded-[10px] text-[0.85rem] font-bold text-center min-w-[90px]">
                                     {item.time}
                                 </div>
 
                                 <div>
                                     <h4 className="text-primary font-serif text-[0.85rem] mb-[3px]">{item.title}</h4>
-                                    <p className="text-[#7A5C4A] text-[0.78rem]">{item.desc}</p>
+                                    <p className="text-white text-[0.78rem]">{item.desc}</p>
                                 </div>
                             </div>
                         ))}

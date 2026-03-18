@@ -42,13 +42,13 @@ const DarshanTimings = () => {
                         ॥ नित्य सेवा समय ॥
                     </motion.h2>
                     <h1 className="text-4xl md:text-6xl text-white font-bold italic">
-                        Daily <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200">Rhythms</span>
+                        Daily <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-200">Rhythms</span>
                     </h1>
                 </div>
  
                 <div className="relative">
                     {/* Central Vertical Line (The Path) */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-orange-500/0 via-orange-500/50 to-orange-500/0" />
+                    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-linear-to-b from-orange-500/0 via-orange-500/50 to-orange-500/0" />
  
                     <div className="space-y-12">
                         {timings.map((item, i) => (
