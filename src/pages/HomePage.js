@@ -5,13 +5,11 @@ import DarshanTimings from "@/components/DarshanTimings";
 import LiveDarshan from "@/components/LiveDarshan";
 import MainSection from "@/components/MainSection";
 import OurServices from "@/components/OurServices";
-import ServiceOpportunities from "@/components/ServiceOpportunities";
 import TempleDailyActivities from "@/components/TempleDailyActivities";
 import TempleDonation from "@/components/TempleDonation";
 import TempleEvents from "@/components/TempleEvents";
 import TempleNews from "@/components/TempleNews";
 import TempleGallery from "@/components/TempleGallery";
-import TempleLocation from "@/components/TempleLocation";
 import TempleProject from "@/components/TempleProject";
 import React from "react";
 import DonationCTA from "@/components/DonationCTA";
@@ -30,9 +28,7 @@ const HomePage = () => {
             <TempleNews />
             <LiveDarshan />
             <VolunteerSection />
-            <TempleLocation />
             <TempleDonation />
-            <ServiceOpportunities />
             <OurServices />
             <ContactUS />
         </>
