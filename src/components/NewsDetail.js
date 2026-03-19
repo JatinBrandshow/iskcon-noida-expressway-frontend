@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Users, Plane, Car, Hotel, Send, Instagram, Facebook } from "lucide-react";
+import { Users, Plane, Car, Hotel, Send, Instagram, Facebook, Calendar, User } from "lucide-react";
+import { IMAGE_PATH } from "@/configs/config";
+import Holder from "./Holder";
 
 const items = [
     {
@@ -26,131 +28,154 @@ const items = [
     },
 ];
 
-const NewsDetail = () => {
+const NewsDetail = ({ data }) => {
+    if (!data) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
+
+    const formatDate = (dateString) => {
+        if (!dateString) return "Recent Update";
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-US", options);
+    };
+
     return (
-        <>
-            <section className="relative h-[60vh] w-full flex items-end text-white">
+        <div className="font-novaReg">
+            {/* Hero Section */}
+            <section className="relative h-[60vh] md:h-[70vh] w-full flex items-end text-white overflow-hidden">
                 {/* Background Image */}
-                <Image src="/img/main-section.webp" alt="News Hero" fill priority className="object-cover" />
+                <Image 
+                    src={data.banner_img ? `${IMAGE_PATH}${data.banner_img}` : "/img/main-section.webp"} 
+                    alt={data.name || "News Hero"} 
+                    fill 
+                    priority 
+                    className="object-cover" 
+                />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/70 to-black/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent"></div>
 
                 {/* Content */}
-                <div className="relative max-w-6xl mx-auto px-6 pb-12 w-full">
-                    {/* Breadcrumb */}
-                    <p className="text-sm text-gray-300 mb-4">Home / News / Events</p>
-
-                    {/* Category */}
-                    <span className="inline-block bg-yellow-500 text-black text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                        Campus News
-                    </span>
+                <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full z-10">
+                    {/* Category/Tag */}
+                    <div className="flex items-center gap-3 mb-6">
+                        <span className="inline-block bg-primary text-white text-xs font-novaBold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                            {data.tag1 || "Campus News"}
+                        </span>
+                        {data.tag2 && (
+                            <span className="inline-block bg-white/20 backdrop-blur-md text-white text-xs font-novaBold px-4 py-1.5 rounded-full uppercase tracking-widest border border-white/20">
+                                {data.tag2}
+                            </span>
+                        )}
+                    </div>
 
                     {/* Title */}
-                    <h1 className="text-3xl md:text-5xl font-bold leading-tight max-w-4xl mb-4">
-                        Workshop on Yoga and Meditation Organized at Accurate Institute
+                    <h1 className="text-4xl md:text-6xl font-novaBold leading-tight max-w-5xl mb-8">
+                        {data.name}
                     </h1>
 
                     {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-6 text-sm text-gray-300">
-                        <span>📅 March 14, 2026</span>
-
-                        <span>✍️ Accurate Institute</span>
-
-                        <span>⏱ 3 min read</span>
+                    <div className="flex flex-wrap items-center gap-8 text-sm text-gray-300 font-novaSemi">
+                        <div className="flex items-center gap-2">
+                            <Calendar size={18} className="text-primary" />
+                            <span>{formatDate(data.date || data.addedon)}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <User size={18} className="text-primary" />
+                            <span>{data.addedby || "ISKCON Noida"}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            <span>{data.metatitle || "Announcement"}</span>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section className="bg-black text-white py-20 px-6">
+
+            {/* Main Content Section */}
+            <section className="bg-white py-20 px-6">
                 <div className="max-w-6xl mx-auto">
-                    {/* Title */}
-                    <div className="flex items-center justify-center mb-16">
-                        <div className="flex-1 h-0.5 bg-gray-600"></div>
-                        <h2 className="px-6 text-2xl tracking-widest font-semibold">ABOUT THE TOUR</h2>
-                        <div className="flex-1 h-0.5 bg-gray-600"></div>
-                    </div>
+                    <div className="grid lg:grid-cols-3 gap-16">
+                        {/* Left Content - The Article */}
+                        <div className="lg:col-span-2 space-y-10">
+                            {/* Short Description */}
+                            {data.shortdesc && (
+                                <div 
+                                    className="text-xl md:text-2xl text-secondary font-novaSemi leading-relaxed border-l-4 border-primary pl-8 py-2 italic"
+                                    dangerouslySetInnerHTML={{ __html: data.shortdesc }}
+                                />
+                            )}
 
-                    <div className="grid md:grid-cols-2 gap-16 items-start">
-                        {/* Left Content */}
-                        <div className="space-y-12">
-                            <p className="text-gray-300 leading-relaxed">
-                                We've planned a simple and convenient 10-day itinerary for your trip to Japan. You'll
-                                visit three cities
-                                <span className="text-yellow-400"> Osaka, Kyoto, and Tokyo.</span>
-                            </p>
+                            {/* Main Description */}
+                            <div 
+                                className="prose prose-lg max-w-none text-gray-700 leading-loose space-y-6 font-novaReg prose-headings:font-novaBold prose-headings:text-secondary prose-p:mb-6"
+                                dangerouslySetInnerHTML={{ __html: data.description }}
+                            />
 
-                            <p className="text-gray-300 leading-relaxed">
-                                No need to worry about routes, schedules, or finding places — everything is already
-                                organized. We'll show you where to go, what to see, and where to eat, so you can simply
-                                enjoy
-                                <span className="text-yellow-400"> the journey.</span>
-                            </p>
+                            {/* Dynamic Holders (Extra Data) */}
+                            {data.extraComponentData && (
+                                <div className="mt-16 space-y-12">
+                                    {Array.from({ length: 40 }, (_, index) => {
+                                        const key = `holder${index}`;
+                                        const holderData = data.extraComponentData[key];
+                                        return holderData ? (
+                                            <div key={key} className="bg-[#faf9f6] p-8 md:p-12 rounded-[2.5rem] border border-gray-100 shadow-sm">
+                                                <h3 className="text-2xl font-novaBold text-secondary mb-8 border-b border-gray-200 pb-4">
+                                                    {holderData.param}
+                                                </h3>
+                                                <Holder data={holderData} />
+                                            </div>
+                                        ) : null;
+                                    })}
+                                </div>
+                            )}
                         </div>
 
-                        {/* Timeline */}
-                        <div className="relative">
-                            {/* vertical line */}
-                            <div className="absolute left-1/2 top-0 h-full w-0.5 bg-gray-500 -translate-x-1/2"></div>
+                        {/* Right Sidebar - Newsletter & Socials */}
+                        <div className="space-y-10">
+                            {/* Newsletter / Contact form in sidebar style */}
+                            <div className="bg-secondary p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+                                
+                                <h3 className="text-2xl font-novaBold mb-6 relative z-10">Stay Connected</h3>
+                                <p className="text-gray-300 mb-8 text-sm leading-relaxed relative z-10">
+                                    Get the latest updates from ISKCON Noida Expressway directly in your inbox.
+                                </p>
+                                
+                                <form className="space-y-6 relative z-10">
+                                    <input
+                                        type="text"
+                                        placeholder="Your name"
+                                        className="w-full bg-white/10 border-b border-white/20 focus:outline-none focus:border-primary py-3 transition-colors placeholder-white/50 text-white"
+                                    />
+                                    <input
+                                        type="email"
+                                        placeholder="Email address"
+                                        className="w-full bg-white/10 border-b border-white/20 focus:outline-none focus:border-primary py-3 transition-colors placeholder-white/50 text-white"
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-primary text-white py-4 rounded-xl font-novaBold hover:bg-primary/90 transition-all shadow-lg flex items-center justify-center gap-3 active:scale-95"
+                                    >
+                                        Subscribe <Send size={18} />
+                                    </button>
+                                </form>
+                            </div>
 
-                            <div className="space-y-20">
-                                {/* Osaka */}
-                                <div className="relative flex items-center">
-                                    <div className="w-1/2 pr-8 text-right">
-                                        <p className="text-gray-400 text-sm">Days 1–3</p>
-                                        <h3 className="text-xl font-semibold">Osaka</h3>
-                                    </div>
-
-                                    <div className="absolute left-1/2 w-4 h-4 bg-white rounded-full -translate-x-1/2"></div>
-
-                                    <div className="w-1/2 pl-8">
-                                        <Image
-                                            src="/img/main-section.webp"
-                                            alt="Osaka"
-                                            width={160}
-                                            height={120}
-                                            className="rounded-lg shadow-lg"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Kyoto */}
-                                <div className="relative flex items-center">
-                                    <div className="w-1/2 pr-8 text-right">
-                                        <Image
-                                            src="/img/main-section.webp"
-                                            alt="Kyoto"
-                                            width={160}
-                                            height={120}
-                                            className="rounded-lg shadow-lg ml-auto"
-                                        />
-                                    </div>
-
-                                    <div className="absolute left-1/2 w-4 h-4 bg-white rounded-full -translate-x-1/2"></div>
-
-                                    <div className="w-1/2 pl-8">
-                                        <p className="text-gray-400 text-sm">Days 4–6</p>
-                                        <h3 className="text-xl font-semibold">Kyoto</h3>
-                                    </div>
-                                </div>
-
-                                {/* Tokyo */}
-                                <div className="relative flex items-center">
-                                    <div className="w-1/2 pr-8 text-right">
-                                        <p className="text-gray-400 text-sm">Days 7–10</p>
-                                        <h3 className="text-xl font-semibold">Tokyo</h3>
-                                    </div>
-
-                                    <div className="absolute left-1/2 w-4 h-4 bg-white rounded-full -translate-x-1/2"></div>
-
-                                    <div className="w-1/2 pl-8">
-                                        <Image
-                                            src="/img/main-section.webp"
-                                            alt="Tokyo"
-                                            width={160}
-                                            height={120}
-                                            className="rounded-lg shadow-lg"
-                                        />
-                                    </div>
+                            {/* Share & Follow */}
+                            <div className="p-8 rounded-[2.5rem] border-2 border-gray-50 bg-[#faf9f6]">
+                                <h3 className="text-xl font-novaBold text-secondary mb-6 italic">Follow the Journey</h3>
+                                <div className="flex gap-4">
+                                    <a className="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-2xl text-secondary hover:bg-primary hover:border-primary hover:text-white transition-all cursor-pointer shadow-sm active:scale-90">
+                                        <Instagram size={22} />
+                                    </a>
+                                    <a className="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-2xl text-secondary hover:bg-primary hover:border-primary hover:text-white transition-all cursor-pointer shadow-sm active:scale-90">
+                                        <Facebook size={22} />
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -158,108 +183,32 @@ const NewsDetail = () => {
                 </div>
             </section>
 
-            <section className="relative py-24 text-white">
-                {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                        backgroundImage:
-                            "url('https://images.unsplash.com/photo-1526481280691-3c469c13e6d9?q=80&w=2070')",
-                    }}
-                />
-
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/80"></div>
-
-                <div className="relative max-w-6xl mx-auto px-6">
-                    {/* Heading */}
-                    <div className="flex items-center mb-14">
-                        <h2 className="text-3xl md:text-4xl font-semibold tracking-wider">WHAT'S INCLUDED</h2>
-                        <div className="flex-1 h-0.5 bg-gray-600 ml-6"></div>
+            {/* Gallery Section - From data if available */}
+            {data.galleryimg && data.galleryimg.length > 0 && (
+                <section className="py-24 bg-[#faf9f6]">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <div className="flex items-center gap-6 mb-12">
+                            <h2 className="text-3xl md:text-4xl font-novaBold text-secondary">Captured Moments</h2>
+                            <div className="flex-1 h-px bg-gray-200"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {data.galleryimg.map((img, index) => (
+                                <div key={index} className="aspect-square relative rounded-3xl overflow-hidden group shadow-md">
+                                    <Image
+                                        src={`${IMAGE_PATH}${img}`}
+                                        alt={`Gallery Image ${index + 1}`}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-
-                    {/* Cards */}
-                    <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-6">
-                        {items.map((item, index) => (
-                            <div
-                                key={index}
-                                className="border border-gray-600 rounded-xl p-6 backdrop-blur-md bg-white/5 hover:bg-white/10 transition"
-                            >
-                                <div className="mb-4">{item.icon}</div>
-
-                                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-
-                                <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="relative h-[90vh] w-full flex items-center">
-                {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                        backgroundImage:
-                            "url('https://images.unsplash.com/photo-1526481280691-3c469c13e6d9?q=80&w=2070')",
-                    }}
-                />
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40"></div>
-
-                <div className="relative max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
-                    {/* Contact Card */}
-                    <div className="backdrop-blur-lg bg-white/20 p-10 rounded-2xl w-105 text-white shadow-xl">
-                        <h2 className="text-3xl font-light leading-snug mb-6">
-                            Want to join us,
-                            <br />
-                            but still have questions?
-                        </h2>
-
-                        <p className="text-lg mb-6 opacity-90">Leave a request</p>
-
-                        <form className="space-y-6">
-                            <input
-                                type="text"
-                                placeholder="Your name"
-                                className="w-full bg-transparent border-b border-white/60 focus:outline-none py-2 placeholder-white/70"
-                            />
-
-                            <input
-                                type="text"
-                                placeholder="Phone number"
-                                className="w-full bg-transparent border-b border-white/60 focus:outline-none py-2 placeholder-white/70"
-                            />
-
-                            <textarea
-                                placeholder="Comment"
-                                className="w-full bg-transparent border-b border-white/60 focus:outline-none py-2 placeholder-white/70 resize-none"
-                            />
-
-                            <button
-                                type="submit"
-                                className="w-full bg-white text-black py-3 rounded-md font-medium hover:bg-gray-200 transition flex items-center justify-center gap-2"
-                            >
-                                Send <Send size={18} />
-                            </button>
-                        </form>
-                    </div>
-
-                    {/* Social Icons */}
-                    <div className="absolute bottom-8 right-8 flex gap-4 text-white">
-                        <a className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition">
-                            <Instagram size={18} />
-                        </a>
-
-                        <a className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition">
-                            <Facebook size={18} />
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </>
+                </section>
+            )}
+        </div>
     );
 };
 

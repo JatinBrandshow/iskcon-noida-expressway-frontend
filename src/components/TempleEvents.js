@@ -70,7 +70,7 @@ const TempleEvents = () => {
               desc: event.shortdesc || "",
               time: event.param1 || "TBA",
               location: event.param2 || "मुख्य मंदिर",
-              image: event.featured_img ? `${IMAGE_PATH}${event.featured_img}` : null,
+              image: event.banner_img ? `${IMAGE_PATH}${event.banner_img}` : null,
               path: event.path || `/event/${event._id}`,
               isDefault: false
             };

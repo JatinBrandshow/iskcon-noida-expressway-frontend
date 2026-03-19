@@ -101,7 +101,7 @@ const Event = () => {
             {/* Hero Section */}
             <section className="relative h-[60vh] md:h-[70vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <Image 
+                    <Image
                         src="/img/main-section.webp"
                         alt="Devotees at ISKCON"
                         fill
@@ -137,8 +137,8 @@ const Event = () => {
 
                     {/* Search Bar */}
                     <div className="relative w-full md:w-96">
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             placeholder="आयोजन खोजें... Search events..."
                             className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all shadow-sm"
                             value={searchTerm}
@@ -163,7 +163,7 @@ const Event = () => {
                                 <div key={event._id} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
                                     {/* Image Container */}
                                     <div className="relative h-64 overflow-hidden bg-gray-100">
-                                        <Image 
+                                        <Image
                                             src={event.isDefault ? event.banner_img : `${IMAGE_PATH}${event.banner_img}`}
                                             alt={event.name}
                                             fill
@@ -175,7 +175,7 @@ const Event = () => {
                                                 {event.tag1 || "महोत्सव"}
                                             </div>
                                         </div>
-                                        
+
                                         {/* Floating Action Circle */}
                                         <div className="absolute bottom-5 right-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                             <Link href={event.path || "#"} className="bg-primary text-white p-4 rounded-2xl shadow-xl flex items-center justify-center">
@@ -190,7 +190,7 @@ const Event = () => {
                                             <CalendarDays size={18} />
                                             <span>{formatDate(event.date)}</span>
                                         </div>
-                                        
+
                                         <h3 className="text-2xl font-novaBold text-secondary mb-4 leading-tight group-hover:text-primary transition-colors line-clamp-2">
                                             {event.name}
                                         </h3>
@@ -211,14 +211,14 @@ const Event = () => {
                                             </div>
                                         </div>
 
-                                        <Link 
+                                        <Link
                                             href={event.path || "#"}
                                             className="w-full py-4 bg-secondary text-white rounded-2xl font-novaBold text-center text-sm group/link hover:bg-primary transition-all shadow-lg shadow-secondary/10 hover:shadow-primary/20 active:scale-[0.98]"
                                         >
                                             विवरण देखें • View Details
                                         </Link>
                                     </div>
-                                    
+
                                     {/* Visual Accent */}
                                     <div className="h-2 w-full bg-gradient-to-r from-primary via-tertiary to-primary group-hover:animate-gradient-x"></div>
                                 </div>
@@ -228,31 +228,30 @@ const Event = () => {
                         {/* Pagination */}
                         {totalPages > 1 && (
                             <div className="flex justify-center items-center mt-20 gap-4">
-                                <button 
+                                <button
                                     onClick={() => setPage(p => Math.max(1, p - 1))}
                                     disabled={page === 1}
                                     className="p-4 rounded-2xl border border-gray-200 bg-white text-secondary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors shadow-sm"
                                 >
                                     <ChevronLeft size={24} />
                                 </button>
-                                
+
                                 <div className="flex bg-white border border-gray-200 rounded-[1.5rem] p-1.5 shadow-sm overflow-x-auto max-w-[280px] md:max-w-none">
                                     {[...Array(totalPages)].map((_, i) => (
-                                        <button 
+                                        <button
                                             key={i + 1}
                                             onClick={() => setPage(i + 1)}
-                                            className={`min-w-[52px] h-12 rounded-xl text-sm font-novaBold transition-all ${
-                                                page === i + 1 
-                                                ? "bg-primary text-white shadow-lg shadow-primary/30" 
-                                                : "text-gray-400 hover:bg-gray-50 hover:text-secondary"
-                                            }`}
+                                            className={`min-w-[52px] h-12 rounded-xl text-sm font-novaBold transition-all ${page === i + 1
+                                                    ? "bg-primary text-white shadow-lg shadow-primary/30"
+                                                    : "text-gray-400 hover:bg-gray-50 hover:text-secondary"
+                                                }`}
                                         >
                                             {i + 1}
                                         </button>
                                     ))}
                                 </div>
 
-                                <button 
+                                <button
                                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                                     disabled={page === totalPages}
                                     className="p-4 rounded-2xl border border-gray-200 bg-white text-secondary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors shadow-sm"
@@ -267,8 +266,8 @@ const Event = () => {
                         <div className="text-6xl mb-6">🕉️</div>
                         <h3 className="text-3xl font-novaBold text-secondary mb-3">कोई आयोजन नहीं मिला</h3>
                         <p className="text-gray-500 max-w-sm mx-auto mb-8">"{searchTerm}" से संबंधित कोई आध्यात्मिक आयोजन नहीं मिला। कृपया पुनः प्रयास करें।</p>
-                        <button 
-                            onClick={() => {setSearchTerm(""); setPage(1);}}
+                        <button
+                            onClick={() => { setSearchTerm(""); setPage(1); }}
                             className="px-10 py-4 bg-primary text-white rounded-2xl font-novaBold hover:shadow-2xl hover:shadow-primary/30 transition-all active:scale-95"
                         >
                             सभी देखें • Show All Events
