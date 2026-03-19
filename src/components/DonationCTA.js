@@ -163,7 +163,7 @@ const DonationCTA = () => {
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-                        Leave Your <span className="text-orange-600 italic">Eternal Mark</span>
+                        Leave Your <span className="text-primary italic">Eternal Mark</span>
                     </h2>
                     <p className="text-stone-500 text-lg">
                         Choose a Seva category to support the ongoing construction of the ISKCON Mandir.
@@ -227,7 +227,7 @@ const DonationCTA = () => {
                     <div className="text-center mb-12">
                         <button
                             onClick={() => setShowAll(!showAll)}
-                            className="px-8 py-3 rounded-full border border-orange-500 text-orange-600 font-semibold hover:bg-orange-500 hover:text-white transition"
+                            className="px-8 py-3 rounded-full border border-orange-500 text-primary font-semibold hover:bg-orange-500 hover:text-white transition"
                         >
                             {showAll ? "Show Less" : "View All Sevas"}
                         </button>

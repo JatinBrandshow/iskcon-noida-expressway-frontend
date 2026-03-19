@@ -6,7 +6,6 @@ import LiveDarshan from "@/components/LiveDarshan";
 import MainSection from "@/components/MainSection";
 import OurServices from "@/components/OurServices";
 import ServiceOpportunities from "@/components/ServiceOpportunities";
-import TempleConstructionProject from "@/components/TempleConstructionProject";
 import TempleConstructionSection from "@/components/TempleConstructionSection";
 import TempleDailyActivities from "@/components/TempleDailyActivities";
 import TempleDonation from "@/components/TempleDonation";
@@ -31,7 +30,6 @@ const HomePage = () => {
             <TempleGallery />
             <TempleNews />
             <LiveDarshan />
-            {/* <TempleConstructionProject /> */}
             <TempleVolunteerSection />
             <TempleConstructionSection />
             <TempleLocation />
