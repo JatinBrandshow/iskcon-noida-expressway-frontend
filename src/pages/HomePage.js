@@ -6,7 +6,6 @@ import LiveDarshan from "@/components/LiveDarshan";
 import MainSection from "@/components/MainSection";
 import OurServices from "@/components/OurServices";
 import ServiceOpportunities from "@/components/ServiceOpportunities";
-import TempleConstructionSection from "@/components/TempleConstructionSection";
 import TempleDailyActivities from "@/components/TempleDailyActivities";
 import TempleDonation from "@/components/TempleDonation";
 import TempleEvents from "@/components/TempleEvents";
@@ -14,9 +13,9 @@ import TempleNews from "@/components/TempleNews";
 import TempleGallery from "@/components/TempleGallery";
 import TempleLocation from "@/components/TempleLocation";
 import TempleProject from "@/components/TempleProject";
-import TempleVolunteerSection from "@/components/TempleVolunteerSection";
 import React from "react";
 import DonationCTA from "@/components/DonationCTA";
+import VolunteerSection from "@/components/VolunteerSection";
 
 const HomePage = () => {
     return (
@@ -30,8 +29,7 @@ const HomePage = () => {
             <TempleGallery />
             <TempleNews />
             <LiveDarshan />
-            <TempleVolunteerSection />
-            <TempleConstructionSection />
+            <VolunteerSection />
             <TempleLocation />
             <TempleDonation />
             <ServiceOpportunities />
