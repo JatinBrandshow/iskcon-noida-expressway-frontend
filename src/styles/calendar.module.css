@@ -1,0 +1,367 @@
+.calendarContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  font-family: 'Outfit', sans-serif;
+  color: #2D3436;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.titleSection h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #FF9F43 0%, #FF6B6B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titleSection p {
+  margin: 5px 0 0;
+  color: #636E72;
+  font-size: 1.1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.monthNav {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.navBtn {
+  background: white;
+  border: 1px solid #EAEAEA;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #FF6B6B;
+  font-size: 1.2rem;
+}
+
+.navBtn:hover {
+  background: #FF6B6B;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.currentMonth {
+  font-size: 1.4rem;
+  font-weight: 700;
+  min-width: 180px;
+  text-align: center;
+  color: #2D3436;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+}
+
+.dayHeader {
+  text-align: center;
+  font-weight: 700;
+  padding: 15px 0;
+  color: #B2BEC3;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.dayCell {
+  min-height: 140px;
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  border: 1px solid #F1F2F6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dayCell:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+  border-color: #FF6B6B;
+}
+
+.activeDay {
+  background: linear-gradient(135deg, #FFF9F1 0%, #FFF0E6 100%);
+  border-color: #FF9F43;
+}
+
+.dayNumber {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #2D3436;
+}
+
+.tithiInfo {
+  font-size: 0.85rem;
+  color: #FF6B6B;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.otherInfo {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: #636E72;
+}
+
+.emptyCell {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.emptyCell:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Detail Panel Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 30px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.2);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: #f8f9fa;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #B2BEC3;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: #FF6B6B;
+  color: white;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #2D3436;
+  border-bottom: 2px solid #FF6B6B;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.detailItem {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #B2BEC3;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2D3436;
+}
+
+.fullWidth {
+  grid-column: span 2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .calendarGrid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .dayCell {
+    min-height: 80px;
+    padding: 8px;
+  }
+  .dayNumber {
+    font-size: 1.1rem;
+  }
+  .tithiInfo {
+    font-size: 0.65rem;
+  }
+  .header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+  .fullWidth {
+    grid-column: span 1;
+  }
+}
+.festivalDay {
+  border-bottom: 3px solid #FF9F43 !important;
+}
+
+.festivalIndicator {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #FF9F43;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transitIndicator {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: #4834D4;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.festivalItem {
+  margin-bottom: 5px;
+}
+
+.transitItem {
+  margin-bottom: 5px;
+  color: #4834D4;
+}
+
+.filterTabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  background: #f8f9fa;
+  padding: 6px;
+  border-radius: 16px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab {
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #636E72;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.activeTab {
+  background: white;
+  color: #FF6B6B;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.dimmedDay {
+  opacity: 0.3;
+  filter: grayscale(0.5);
+  pointer-events: none;
+}
+
+.timingsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.timingBadge {
+  background: #FFF5F5;
+  color: #FF6B6B;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #FFE3E3;
+}
+
+

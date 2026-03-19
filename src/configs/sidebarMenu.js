@@ -147,6 +147,14 @@ export const menuItems = [
     //     permission: "Topper Management",
     // },
     {
+        name: "Calendar",
+        href: "admin/calendar-list",
+        icon: (
+            <CalendarRange className="w-5 h-5" />
+        ),
+        permission: "Calendar",
+    },
+    {
         name: "Admin Management",
         href: "admin/admin-management",
         icon: (
@@ -223,5 +231,9 @@ export const submodules = [
     {
         name: 'Extra Components',
         href: 'admin/extra-components'
+    },
+    {
+        name: 'Create Calendar',
+        href: 'admin/create-calendar'
     }
 ]
