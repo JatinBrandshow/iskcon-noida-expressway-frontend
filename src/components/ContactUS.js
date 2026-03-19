@@ -44,7 +44,7 @@ const ContactUS = () => {
         <>
             <section id="location" className="relative py-24 px-[5%] bg-[#FFFBF2] overflow-hidden">
                 {/* Decorative Background Text or Pattern */}
-                <div className="absolute inset-0 flex justify-center pointer-events-none select-none">
+                <div className="absolute inset-0 flex justify-end pointer-events-none select-none">
                     <motion.h1
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 6, repeat: Infinity }}
