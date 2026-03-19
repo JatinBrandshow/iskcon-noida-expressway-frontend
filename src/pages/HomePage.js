@@ -17,19 +17,21 @@ import TempleLocation from "@/components/TempleLocation";
 import TempleProject from "@/components/TempleProject";
 import TempleVolunteerSection from "@/components/TempleVolunteerSection";
 import React from "react";
+import DonationCTA from "@/components/DonationCTA";
 
 const HomePage = () => {
     return (
         <>
             <MainSection />
             <DarshanTimings />
+            <DonationCTA />
             <TempleDailyActivities />
             <TempleProject />
             <TempleEvents />
             <TempleGallery />
             <TempleNews />
             <LiveDarshan />
-            <TempleConstructionProject />
+            {/* <TempleConstructionProject /> */}
             <TempleVolunteerSection />
             <TempleConstructionSection />
             <TempleLocation />
