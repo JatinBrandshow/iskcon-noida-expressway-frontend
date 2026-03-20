@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .navBtn {
@@ -112,7 +112,7 @@
 
 .dayCell:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
   border-color: #FF6B6B;
 }
 
@@ -159,7 +159,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@
   border-radius: 30px;
   padding: 40px;
   position: relative;
-  box-shadow: 0 30px 100px rgba(0,0,0,0.2);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -240,13 +240,25 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(40px) scale(0.95); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
+  from {
+    transform: translateY(40px) scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -254,28 +266,35 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
   }
+
   .dayCell {
     min-height: 80px;
     padding: 8px;
   }
+
   .dayNumber {
     font-size: 1.1rem;
   }
+
   .tithiInfo {
     font-size: 0.65rem;
   }
+
   .header {
     flex-direction: column;
     gap: 20px;
     align-items: flex-start;
   }
+
   .detailGrid {
     grid-template-columns: 1fr;
   }
+
   .fullWidth {
     grid-column: span 1;
   }
 }
+
 .festivalDay {
   border-bottom: 3px solid #FF9F43 !important;
 }
@@ -338,7 +357,7 @@
 .activeTab {
   background: white;
   color: #FF6B6B;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .dimmedDay {
@@ -364,4 +383,141 @@
   border: 1px solid #FFE3E3;
 }
 
+.panchangModal {
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
 
+.panchangHeader {
+  padding: 30px 40px;
+  background: linear-gradient(135deg, #FFF9F1 0%, #FFF0E6 100%);
+  border-bottom: 1px solid #FFE3E3;
+}
+
+.panchangHeader .modalTitle {
+  margin-bottom: 5px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.panchangDate {
+  font-size: 1.1rem;
+  color: #636E72;
+  font-weight: 500;
+}
+
+.panchangScrollArea {
+  padding: 30px 40px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #B2BEC3;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 30px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionTitle:first-child {
+  margin-top: 0;
+}
+
+.sectionTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #F1F2F6;
+}
+
+.subValue {
+  font-size: 0.8rem;
+  color: #FF6B6B;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.auspicious {
+  background: #F0FFF4 !important;
+  border: 1px solid #C6F6D5;
+}
+
+.auspicious .label {
+  color: #38A169;
+}
+
+.inauspicious {
+  background: #FFF5F5 !important;
+  border: 1px solid #FED7D7;
+}
+
+.inauspicious .label {
+  color: #E53E3E;
+}
+
+.festivalSection {
+  background: #FFF9F1;
+  border: 1px solid #FFE3E3;
+  margin-top: 20px;
+}
+
+.festivalHeading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #D35400;
+  margin-bottom: 5px;
+}
+
+.festivalDesc {
+  font-size: 0.95rem;
+  color: #636E72;
+  line-height: 1.5;
+}
+
+.panchangScrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panchangScrollArea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.panchangScrollArea::-webkit-scrollbar-thumb {
+  background: #FF9F43;
+  border-radius: 10px;
+}
+
+.panchangScrollArea::-webkit-scrollbar-thumb:hover {
+  background: #FF6B6B;
+}
+
+.muhuratSection {
+  background: #F4F0FF;
+  border: 1px solid #EBE3FF;
+  margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .panchangHeader {
+    padding: 20px;
+  }
+
+  .panchangScrollArea {
+    padding: 20px;
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
