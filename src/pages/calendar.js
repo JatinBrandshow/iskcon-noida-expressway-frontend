@@ -9,7 +9,6 @@ const CalendarPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
-  const [filterType, setFilterType] = useState('All');
 
   const fetchCalendarData = async (date) => {
     setIsLoading(true);
@@ -93,43 +92,27 @@ const CalendarPage = () => {
     for (let d = 1; d <= totalDays; d++) {
       const dateStr = `${year}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       const tithiEntry = calendarData.tithi.find(t => t.date === dateStr);
-      const festivals = calendarData.festival?.filter(f => f.date === dateStr) || [];
+      const manualFestivals = calendarData.festival?.filter(f => f.date === dateStr) || [];
+      const apiFestivalsRaw = tithiEntry?.value?.api_festivals?.[0] || "";
+      const apiFestivals = apiFestivalsRaw ? apiFestivalsRaw.split(',').map(name => ({ value: name.trim(), isApi: true })) : [];
+
+      const allFestivals = [...manualFestivals.map(f => ({ ...f, isApi: false })), ...apiFestivals];
       const muhurats = calendarData.muhurat?.filter(m => m.date === dateStr) || [];
 
       const tithiName = tithiEntry?.value?.tithi?.details?.tithi_name || "";
       const isToday = new Date().toDateString() === new Date(year, currentDate.getMonth(), d).toDateString();
 
-      let isFilteredOut = false;
-      if (filterType === 'Festival' && festivals.length === 0) isFilteredOut = true;
-      if (filterType === 'Shubh Muhurat' && muhurats.length === 0) isFilteredOut = true;
-      if (filterType === 'Tithi' && !tithiEntry) isFilteredOut = true;
-
       cells.push(
         <div
           key={d}
-          className={`${styles.dayCell} ${isToday ? styles.activeDay : ''} ${festivals.length > 0 ? styles.festivalDay : ''} ${isFilteredOut ? styles.dimmedDay : ''}`}
-          onClick={() => setSelectedDay({ ...tithiEntry, festivals, muhurats, date: dateStr })}
+          className={`${styles.dayCell} ${isToday ? styles.activeDay : ''} ${allFestivals.length > 0 ? styles.festivalDay : ''}`}
+          onClick={() => setSelectedDay({ ...tithiEntry, festivals: allFestivals, muhurats, date: dateStr })}
         >
           <span className={styles.dayNumber}>{d}</span>
           <div className={styles.tithiInfo}>{tithiName}</div>
-          {festivals.length > 0 && (
-            <div className={styles.festivalIndicator} title={festivals.map(f => f.value).join(', ')}>
-              • {festivals[0].value}
-              {festivals[0].timings?.length > 0 && festivals[0].timings[0] !== "" && (
-                <span className="text-[10px] block font-novaReg opacity-80 mt-1 italic">
-                  [{festivals[0].timings[0]}]
-                </span>
-              )}
-            </div>
-          )}
-          {muhurats.length > 0 && (
-            <div className={styles.transitIndicator}>
-              {muhurats[0].value}
-              {muhurats[0].timings?.length > 0 && muhurats[0].timings[0] !== "" && (
-                <span className="text-[10px] block opacity-80 mt-1">
-                  ({muhurats[0].timings[0]})
-                </span>
-              )}
+          {allFestivals.length > 0 && (
+            <div className={styles.festivalIndicator} title={allFestivals.map(f => f.value).join(', ')}>
+              {allFestivals[0].isApi ? '🕉️' : '•'} {allFestivals[0].value}
             </div>
           )}
         </div>
@@ -159,18 +142,6 @@ const CalendarPage = () => {
             <button className={styles.navBtn} onClick={handleNextMonth}>&gt;</button>
           </div>
         </div>
-      </div>
-
-      <div className={styles.filterTabs}>
-        {['All', 'Festival', 'Tithi', 'Shubh Muhurat'].map(tab => (
-          <button
-            key={tab}
-            className={`${styles.tab} ${filterType === tab ? styles.activeTab : ''}`}
-            onClick={() => setFilterType(tab)}
-          >
-            {tab}
-          </button>
-        ))}
       </div>
 
       {isLoading ? (
@@ -289,6 +260,33 @@ const CalendarPage = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Chaughadiya Muhurtas */}
+              {selectedDay.value?.chaughadiya && (
+                <>
+                  <div className={styles.sectionTitle}>Chaughadiya Muhurta</div>
+                  <div className={styles.chaughadiyaGrid}>
+                    <div className={styles.chaughadiyaColumn}>
+                      <h4 className={styles.columnTitle}>☀️ Day Chaughadiya</h4>
+                      {selectedDay.value.chaughadiya.day.map((item, index) => (
+                        <div key={index} className={`${styles.chaughadiyaItem} ${styles[item.muhurta.toLowerCase()]}`}>
+                          <span className={styles.chaughadiyaName}>{item.muhurta}</span>
+                          <span className={styles.chaughadiyaTime}>{item.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className={styles.chaughadiyaColumn}>
+                      <h4 className={styles.columnTitle}>🌙 Night Chaughadiya</h4>
+                      {selectedDay.value.chaughadiya.night.map((item, index) => (
+                        <div key={index} className={`${styles.chaughadiyaItem} ${styles[item.muhurta.toLowerCase()]}`}>
+                          <span className={styles.chaughadiyaName}>{item.muhurta}</span>
+                          <span className={styles.chaughadiyaTime}>{item.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
 
               {/* Calendar Details */}
               <div className={styles.sectionTitle}>In-depth Details</div>

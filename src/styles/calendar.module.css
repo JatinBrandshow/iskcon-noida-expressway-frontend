@@ -507,7 +507,80 @@
   margin-top: 15px;
 }
 
+.chaughadiyaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.chaughadiyaColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2D3436;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chaughadiyaItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  transition: transform 0.2s;
+}
+
+.chaughadiyaItem:hover {
+  transform: translateX(5px);
+}
+
+.chaughadiyaName {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.chaughadiyaTime {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Chaughadiya Auspiciousness Colors */
+.amrit,
+.shubh,
+.labh {
+  background: #F0FFF4;
+  border: 1px solid #C6F6D5;
+  color: #276749;
+}
+
+.char {
+  background: #ebf8ff;
+  border: 1px solid #bee3f8;
+  color: #2c5282;
+}
+
+.rog,
+.kaal,
+.udveg {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  color: #9b2c2c;
+  opacity: 0.8;
+}
+
 @media (max-width: 600px) {
+  .chaughadiyaGrid {
+    grid-template-columns: 1fr;
+  }
+
   .panchangHeader {
     padding: 20px;
   }
@@ -521,3 +594,192 @@
     gap: 10px;
   }
 }
+/* Specialized Calendar Styles */
+.festivalHighlight {
+  border: 2px solid #FF9F43;
+  background: #FFF9F1;
+  box-shadow: 0 4px 15px rgba(255, 159, 67, 0.15);
+}
+
+.dimmedFestivalDay {
+  opacity: 0.7;
+}
+
+.festivalIndicatorList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.festName {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #D35400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upcomingFestivalsSection {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #F1F2F6;
+}
+
+.upcomingFestivalsSection h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #2D3436;
+}
+
+.festList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.festCard {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #F1F2F6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.festCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-color: #FF9F43;
+}
+
+.festDate {
+  background: #FFF9F1;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+  margin-right: 20px;
+}
+
+.fDate {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FF9F43;
+}
+
+.fMonth {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #D35400;
+}
+
+.festDetail h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2D3436;
+}
+
+.festTime {
+  font-size: 0.85rem;
+  color: #636E72;
+  margin-top: 4px;
+}
+
+/* Tithi Calendar Styles */
+.tithiFocus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.tithiLabel {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 10px 0 5px;
+}
+
+.shukla { color: #FF9F43; }
+.krishna { color: #4834D4; }
+
+.pakshaMini {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+.legend {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding: 15px 25px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  width: fit-content;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #636E72;
+}
+
+.shuklaDot, .krishnaDot, .festDot, .abhijitDot, .rahukaalDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.shuklaDot { background: #FF9F43; }
+.krishnaDot { background: #4834D4; }
+.festDot { background: #FF9F43; border: 2px solid white; box-shadow: 0 0 0 1px #FF9F43; }
+.abhijitDot { background: #38A169; }
+.rahukaalDot { background: #E53E3E; }
+
+/* Muhurat Calendar Styles */
+.muhuratFocus {
+  gap: 10px;
+}
+
+.miniMuhurat {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
+.miniAuspicious {
+  background: #F0FFF4;
+  color: #38A169;
+  border: 1px solid #C6F6D5;
+}
+
+.miniInauspicious {
+  background: #FFF5F5;
+  color: #E53E3E;
+  border: 1px solid #FED7D7;
+}
+
+@media (max-width: 768px) {
+  .festList {
+    grid-template-columns: 1fr;
+  }
+}
+
